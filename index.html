@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Refugios para el Alma</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+    #sidebar {
+      width: 300px;
+      background: #f4f4f4;
+      padding: 15px;
+      overflow-y: auto;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    }
+    #map {
+      flex: 1;
+      height: 100vh;
+    }
+    #btnFlotante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    #modalRefugio {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    #modalContenido {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
+    #cerrarModal {
+      float: right;
+      cursor: pointer;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Panel lateral -->
+  <div id="sidebar">
+    <h2>Refugios para el Alma</h2>
+    <input type="text" id="filtro" placeholder="Buscar refugio...">
+    <p id="contador">Total: 0</p>
+    <ul id="refugiosList"></ul>
+  </div>
+
+  <!-- Mapa -->
+  <div id="map"></div>
+
+  <!-- Botón flotante -->
+  <button id="btnFlotante">+</button>
+
+  <!-- Modal -->
+  <div id="modalRefugio">
+    <div id="modalContenido">
+      <span id="cerrarModal">X</span>
+      <h3>Agregar refugio</h3>
+      <label>Tu nombre:</label>
+      <input type="text" id="nombreInput" placeholder="Opcional"><br><br>
+      <label>Emoji:</label>
+      <select id="emojiSelect">
+        <option>😊</option>
+        <option>🌳</option>
+        <option>🏞️</option>
+        <option>❤️</option>
+        <option>🙏</option>
+      </select><br><br>
+      <label>Comentario:</label>
+      <input type="text" id="comentarioInput" placeholder="Escribe algo"><br><br>
+      <button id="guardarRefugio">Guardar</button>
+    </div>
+  </div>
+
+  <!-- Librerías -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+  <!-- Tu script -->
+  <script src="script.js"></script>
+</body>
+</html>
